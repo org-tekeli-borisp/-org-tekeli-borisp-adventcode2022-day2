@@ -2,7 +2,7 @@ package org.tekeli.borisp.adventcode2022.day02;
 
 import java.util.Optional;
 
-public class StringToIntegerImpl implements StringToInteger {
+public class StringToMoveImpl implements StringToMove {
     @Override
     public Integer apply(final String input) {
        return Optional.ofNullable(input)

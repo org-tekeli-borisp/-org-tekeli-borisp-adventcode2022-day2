@@ -7,12 +7,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class StringToIntegerTest {
-    private StringToInteger unitUnderTest;
+public class StringToMoveTest {
+    private StringToMove unitUnderTest;
 
     @BeforeEach
     void setUp() {
-        unitUnderTest = new StringToIntegerImpl();
+        unitUnderTest = new StringToMoveImpl();
     }
 
     @Test
