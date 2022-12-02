@@ -4,19 +4,19 @@ import java.util.Optional;
 
 public class StringToMoveImpl implements StringToMove {
     @Override
-    public Integer apply(final String input) {
+    public Move apply(final String input) {
        return Optional.ofNullable(input)
                 .map(this::map)
-                .orElse(0);
+                .orElseThrow(IllegalArgumentException::new);
 
     }
 
-    private Integer map(final String input) {
+    private Move map(final String input) {
         return switch (input) {
-            case "A", "X" -> 1;
-            case "B", "Y" -> 2;
-            case "C", "Z" -> 3;
-            default -> 0;
+            case "A", "X" -> Move.ROCK;
+            case "B", "Y" -> Move.PAPER;
+            case "C", "Z" -> Move.SCISSORS;
+            default ->  throw new IllegalArgumentException("Boom!");
         };
     }
 }

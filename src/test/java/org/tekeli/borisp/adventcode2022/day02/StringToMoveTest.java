@@ -3,9 +3,12 @@ package org.tekeli.borisp.adventcode2022.day02;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringToMoveTest {
     private StringToMove unitUnderTest;
@@ -23,81 +26,47 @@ public class StringToMoveTest {
     }
 
     @Test
-    void shouldProduceInteger() {
+    void shouldProduceMove() {
         final var input = "A";
 
         final var output = unitUnderTest.apply(input);
 
-        assertThat(output).isInstanceOf(Integer.class);
+        assertThat(output).isInstanceOf(Move.class);
     }
 
     @Test
     void shouldProduceOneInCaseOfNull() {
-        final var output = unitUnderTest.apply(null);
-
-        assertThat(output).isEqualTo(0);
+        assertThrows(IllegalArgumentException.class, () -> unitUnderTest.apply(null));
     }
 
-    @Test
-    void shouldProduceOneInCaseOfA() {
-        final var input = "A";
+    @ParameterizedTest
+    @ValueSource(strings = {"A", "X"})
+    void shouldProduceRockInCaseAorX(final String input) {
 
         final var output = unitUnderTest.apply(input);
 
-        assertThat(output).isEqualTo(1);
+        assertThat(output).isEqualTo(Move.ROCK);
     }
 
-    @Test
-    void shouldProduceOneInCaseOfX() {
-        final var input = "X";
+    @ParameterizedTest
+    @ValueSource(strings = {"B", "Y"})
+    void shouldProducePaperInCaseBorY(final String input) {
 
         final var output = unitUnderTest.apply(input);
 
-        assertThat(output).isEqualTo(1);
+        assertThat(output).isEqualTo(Move.PAPER);
     }
-
-    @Test
-    void shouldProduceTwoInCaseOfB() {
-        final var input = "B";
+    @ParameterizedTest
+    @ValueSource(strings = {"C", "Z"})
+    void shouldProduceScissorsInCaseCorZ(final String input) {
 
         final var output = unitUnderTest.apply(input);
 
-        assertThat(output).isEqualTo(2);
+        assertThat(output).isEqualTo(Move.SCISSORS);
     }
 
     @Test
-    void shouldProduceTwoInCaseOfY() {
-        final var input = "Y";
-
-        final var output = unitUnderTest.apply(input);
-
-        assertThat(output).isEqualTo(2);
-    }
-
-    @Test
-    void shouldProduceTwoInCaseOfC() {
-        final var input = "C";
-
-        final var output = unitUnderTest.apply(input);
-
-        assertThat(output).isEqualTo(3);
-    }
-
-    @Test
-    void shouldProduceTwoInCaseOfZ() {
-        final var input = "Z";
-
-        final var output = unitUnderTest.apply(input);
-
-        assertThat(output).isEqualTo(3);
-    }
-
-    @Test
-    void shouldProduceZeroOtherwise() {
-        final var input = "Boom!";
-
-        final var output = unitUnderTest.apply(input);
-
-        assertThat(output).isEqualTo(0);
+    void shouldThrowIllegalArgumentExceptionOtherwise() {
+        assertThrows(IllegalArgumentException.class, () -> unitUnderTest.apply("INVALID"));
     }
 }
