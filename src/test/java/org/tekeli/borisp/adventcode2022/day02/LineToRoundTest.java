@@ -64,7 +64,8 @@ public class LineToRoundTest {
                 Arguments.of("B Z", new Round(Move.PAPER, Move.SCISSORS)),
                 Arguments.of("C X", new Round(Move.SCISSORS, Move.ROCK)),
                 Arguments.of("C Y", new Round(Move.SCISSORS, Move.PAPER)),
-                Arguments.of("C Z", new Round(Move.SCISSORS, Move.SCISSORS))
+                Arguments.of("C Z", new Round(Move.SCISSORS, Move.SCISSORS)),
+                Arguments.of(" C Z ", new Round(Move.SCISSORS, Move.SCISSORS))
         );
     }
 }

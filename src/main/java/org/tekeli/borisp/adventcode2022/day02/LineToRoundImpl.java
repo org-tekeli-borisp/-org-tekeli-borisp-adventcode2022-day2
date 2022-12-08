@@ -10,6 +10,7 @@ public class LineToRoundImpl implements LineToRound {
     public Round apply(final String line) {
         return Optional.ofNullable(line)
                 .filter(Predicate.not(String::isBlank))
+                .map(String::trim)
                 .filter(this::isReadyForMapping)
                 .map(this::map)
                 .orElseThrow(IllegalArgumentException::new);
