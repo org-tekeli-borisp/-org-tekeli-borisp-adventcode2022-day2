@@ -24,6 +24,6 @@ public class LineToRoundImpl implements LineToRound {
     }
 
     private boolean isReadyForMapping(final String line) {
-       return line.matches("[ABC]\s[YXZ]");
+       return line.matches("[ABC] [YXZ]");
     }
 }
